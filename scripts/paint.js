@@ -3,13 +3,15 @@
 import {checkAvg } from './validate.js';
 const cardE = document.getElementById('cardsEstudiantes');
 const students = [];
+const cardP = document.getElementById('cardseProfesores');
+const profesor = [];
 
 const paintCard = (tipo) =>{
     console.log(tipo);
     tipo = tipo.toUpperCase();
     const fragment = document.createDocumentFragment();
     const templateStudent = document.querySelector('#templateEstudiante').content;
-
+    const templateProfesor = document.querySelector('#templateProfesor').content;
     if (tipo=== 'ESTUDIANTE'){
        for(let i of students){
         const cloneTemp = templateStudent.cloneNode(true);
@@ -21,8 +23,20 @@ const paintCard = (tipo) =>{
        } 
     }else{
         //pintar a profesor
+        if(tipo==='PROFESOR'){
+            for(let i of profesor ){
+                const cloneTemp = templateProfesor.cloneNode(true);
+                cloneTemp.querySelector('.titleCard').innerHTML= "datos del profesor ";
+                cloneTemp.querySelector('.nombreApellido').innerHTML = `nombre: ${i.nom.toUpperCase()} apellidos: ${i.ape.toUpperCase()}`;
+                cloneTemp.querySelector('.profecion').innerHTML = `profesion es: ${i.prom}`;
+                
+            }
+
+
+        }
     }
     cardE.appendChild(fragment);
+    cardP.appendChild(fragment);
 }
 const addStudent = (name,lastName, avg)=>{
     // objeto literal de js
@@ -34,6 +48,16 @@ const addStudent = (name,lastName, avg)=>{
     students.push(student);
     modalAlert('se agrego estudiante');
 };
+
+const addProfesor =(nombreApellido, profecion ) => {
+    let profesor ={
+        nomapp: nombreApellido,
+        prof: profecion
+    }
+    profesor.push(profesor);
+    modalAlert('se agrego profesor');
+}
+
 const modalAlert = (cad) => {
     const alerta =document.createElement('div');
     const texto = document.createElement('p');
@@ -54,4 +78,4 @@ const modalAlert = (cad) => {
 
 }
 
-export{paintCard,addStudent, modalAlert }
+export{paintCard,addStudent,addProfesor, modalAlert }

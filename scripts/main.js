@@ -1,6 +1,6 @@
 'use restrict';
 import { validateString, vAvg, checkAvg} from './validate.js';
-import {paintCard,addStudent, modalAlert} from './paint.js';
+import {paintCard,addStudent, modalAlert, addProfesor} from './paint.js';
 
 const btnAgregar = document.getElementById('btnAgregar');
 const btnMostrar = document.getElementById('btnMostrar');
